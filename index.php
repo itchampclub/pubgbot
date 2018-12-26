@@ -68,7 +68,7 @@ function film($keyword) {
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = "ã€ŒInformasi Filmã€";
+    $result = "「Informasi Film」";
     $result .= "\nJudul :";
 	$result .= $json['Title'];
 	$result .= "\nRilis : ";
@@ -81,7 +81,7 @@ function film($keyword) {
 	$result .= $json['Language'];
 	$result .= "\nNegara : ";
 	$result .= $json['Country'];
-	$result .= "\nã€ŒDone~ã€";
+	$result .= "\n「Done~」";
     return $result;
 }
 #-------------------------[Close]-------------------------#
@@ -110,17 +110,17 @@ function instagram($keyword) {
 
 
 //show menu, saat join dan command,menu
-if ($command == 'à¸Šà¹ˆà¸§à¸¢à¹€à¸«à¸¥à¸·à¸­') {
-    $text .= "ã€ŒKeyword Bot~ã€\n\n";
-    $text .= "- à¸Šà¹ˆà¸§à¸¢à¹€à¸«à¸¥à¸·à¸­\n";
-    $text .= "- à¸”à¸´à¸ à¸„à¸³à¸—à¸µà¹ˆà¸•à¹‰à¸­à¸‡à¸à¸²à¸£ \n";
-    $text .= "- à¹à¸›à¸¥ à¸„à¸³à¸«à¸£à¸·à¸­à¸›à¸£à¸°à¹‚à¸¢à¸„à¸—à¸µà¹ˆà¸•à¹‰à¸­à¸‡à¸à¸²à¸£ \n";
+if ($command == 'ช่วยเหลือ') {
+    $text .= "「Keyword Bot~」\n\n";
+    $text .= "- ช่วยเหลือ\n";
+    $text .= "- ดิก คำที่ต้องการ \n";
+    $text .= "- แปล คำหรือประโยคที่ต้องการ \n";
     $text .= "- ig username \n";
-    $text .= "- def à¸„à¸³à¸—à¸µà¹ˆà¸•à¹‰à¸­à¸‡à¸à¸²à¸£ \n";
-    $text .= "- film à¸Šà¸·à¹ˆà¸­à¸«à¸™à¸±à¸‡ \n";
+    $text .= "- def คำที่ต้องการ \n";
+    $text .= "- film ชื่อหนัง \n";
 		$text .= "- /instagram [unsername] \n";
     $text .= "- /creator \n";
-	$text .= "\nã€ŒDone~ã€";
+	$text .= "\n「Done~」";
     $balas = array(
         'replyToken' => $replyToken,
         'messages' => array(
@@ -202,7 +202,7 @@ if ($message['type'] == 'text') {
 #-------------------------[Close]-------------------------#
 #-------------------------[Open]-------------------------#
 if ($message['type'] == 'text') {
-    if ($command == 'à¸”à¸´à¸') {
+    if ($command == 'ดิก') {
         $result = longdo($options);
         $balas = array( 
             'replyToken' => $replyToken, 
@@ -219,7 +219,7 @@ if ($message['type'] == 'text') {
                               0 =>  
                               array ( 
                 'type' =>  'uri',
-              'label' =>  'à¸”à¸¹à¸œà¸¥à¸¥à¸±à¸žà¸˜à¹Œ',
+              'label' =>  'ดูผลลัพธ์',
               'uri' => longdo($options)
                               )
                             )
@@ -233,7 +233,7 @@ if ($message['type'] == 'text') {
 #-------------------------[Close]-------------------------#
 #-------------------------[Open]-------------------------#
 if ($message['type'] == 'text') {
-    if ($command == 'à¸•à¸²à¸£à¸²à¸‡à¸ªà¸­à¸š') {
+    if ($command == 'ตารางสอบ') {
 	$result = 'https://foodguidebot.herokuapp.com/grade2.php';
         $balas = array( 
             'replyToken' => $replyToken, 
@@ -244,13 +244,13 @@ if ($message['type'] == 'text') {
                           'template' =>  
                           array ( 
                             'type' => 'buttons', 
-                            'text' => 'à¸”à¸¹à¸•à¸²à¸£à¸²à¸‡à¸ªà¸­à¸šà¸¥à¹ˆà¸²à¸ªà¸¸à¸”', 
+                            'text' => 'ดูตารางสอบล่าสุด', 
                             'actions' =>  
                             array ( 
                               0 =>  
                               array ( 
                 'type' =>  'uri',
-              'label' =>  'à¸”à¸¹à¸•à¸²à¸£à¸²à¸‡à¸ªà¸­à¸š',
+              'label' =>  'ดูตารางสอบ',
               'uri' => $result 
                               )
                             )
@@ -263,7 +263,7 @@ if ($message['type'] == 'text') {
 #-------------------------[Close]-------------------------#
 #-------------------------[Open]-------------------------#
 if ($message['type'] == 'text') {
-    if ($command == 'à¸œà¸¥à¸ªà¸­à¸š') {
+    if ($command == 'ผลสอบ') {
 	$result = 'https://foodguidebot.herokuapp.com/grade.php';
         $balas = array( 
             'replyToken' => $replyToken, 
@@ -274,13 +274,13 @@ if ($message['type'] == 'text') {
                           'template' =>  
                           array ( 
                             'type' => 'buttons', 
-                            'text' => 'à¸”à¸¹à¸œà¸¥à¸ªà¸­à¸šà¸¥à¹ˆà¸²à¸ªà¸¸à¸”', 
+                            'text' => 'ดูผลสอบล่าสุด', 
                             'actions' =>  
                             array ( 
                               0 =>  
                               array ( 
                 'type' =>  'uri',
-              'label' =>  'à¸”à¸¹à¸œà¸¥à¸ªà¸­à¸š',
+              'label' =>  'ดูผลสอบ',
               'uri' => $result 
                               )
                             )
@@ -293,7 +293,7 @@ if ($message['type'] == 'text') {
 #-------------------------[Close]-------------------------#
 #-------------------------[Open]-------------------------#
 if($message['type']=='text') {
-        if ($command == 'à¹à¸›à¸¥') {
+        if ($command == 'แปล') {
 
         $result = yandex($options);
         $balas = array(
@@ -310,7 +310,7 @@ if($message['type']=='text') {
 #-------------------------[Close]-------------------------#
 #-------------------------[Open]-------------------------#
 if($message['type']=='text') {
-        if ($command == 'à¹à¸›à¸¥2') {
+        if ($command == 'แปล2') {
 
         $result = yandex2($options);
         $balas = array(

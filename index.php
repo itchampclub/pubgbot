@@ -12,24 +12,6 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 
 
-
-
-
-
-$httpClient = new CurlHTTPClient($channel_token);
-$bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
-$textMessageBuilder = new TextMessageBuilder('hello');
-$response = $bot->pushMessage('Ub3ea97c513612d6e3401302f051f81dc', $textMessageBuilder);
-
-
-
-
-
-
-
-
-
-
 if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
     
@@ -62,6 +44,7 @@ if (!is_null($events['events'])) {
             }                  
         }
 	}
+	echo "Reply";
 }
 else
 {
@@ -69,5 +52,6 @@ $httpClient = new CurlHTTPClient($channel_token);
 $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
 $textMessageBuilder = new TextMessageBuilder('hello');
 $response = $bot->pushMessage('Ub3ea97c513612d6e3401302f051f81dc', $textMessageBuilder);
+	echo "Push";
 }
 echo "OK";

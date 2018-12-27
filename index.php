@@ -10,18 +10,39 @@ $channel_token = '8LSoXWYVTlV7oV82tKW6Rw9YdFLm/kcM4FzC2LACY+zpCP00zb012tMeG/NakC
 $channel_secret = 'ad7b3270006ea092a56f1ad1b49d7a4c';
 $content = file_get_contents('php://input');
 $events = json_decode($content, true);
+
+
+
+
+
+
+$httpClient = new CurlHTTPClient($channel_token);
+$bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
+$textMessageBuilder = new TextMessageBuilder('hello');
+$response = $bot->pushMessage('Ub3ea97c513612d6e3401302f051f81dc', $textMessageBuilder);
+
+
+
+
+
+
+
+
+
+
 if (!is_null($events['events'])) {
-	// Loop through each event
 	foreach ($events['events'] as $event) {
     
-        // Line API send a lot of event type, we interested in message only.
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-            // Get replyToken
             $replyToken = $event['replyToken'];
             switch($event['message']['text']) {
                 
                 case 'tel':
                     $respMessage = '089-5124512';
+            $httpClient = new CurlHTTPClient($channel_token);
+            $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
+            $textMessageBuilder = new TextMessageBuilder($respMessage);
+            $response = $bot->replyMessage($replyToken, $textMessageBuilder);
                     break;
                 case 'address':
                     $respMessage = '99/451 Muang Nonthaburi';
@@ -39,21 +60,14 @@ if (!is_null($events['events'])) {
                     $respMessage = 'Sorry sir...';
                     break;
             }                  
-            $httpClient = new CurlHTTPClient($channel_token);
-            $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
-            $textMessageBuilder = new TextMessageBuilder($respMessage);
-            $response = $bot->replyMessage($replyToken, $textMessageBuilder);
         }
-        
-            // Get replyToken
-            $replyToken = $event['replyToken'];
-            // Sticker
-            $packageId = 1;
-            $stickerId = 1;
-            $httpClient = new CurlHTTPClient($channel_token);
-            $bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
-            $textMessageBuilder = new StickerMessageBuilder($packageId, $stickerId);
-            $response = $bot->replyMessage($replyToken, $textMessageBuilder);
 	}
+}
+else
+{
+$httpClient = new CurlHTTPClient($channel_token);
+$bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
+$textMessageBuilder = new TextMessageBuilder('hello');
+$response = $bot->pushMessage('Ub3ea97c513612d6e3401302f051f81dc', $textMessageBuilder);
 }
 echo "OK";
